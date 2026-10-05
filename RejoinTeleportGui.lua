@@ -109,7 +109,7 @@ G2L["c"] = Instance.new("LocalScript", G2L["1"]);
 
 -- StarterGui.TeleportGui (Rejoin).LocalScript
 local function C_c()
-local script = G2L["c"];
+	local script = G2L["c"];
 	local Players = game:GetService("Players")
 	local TeleportService = game:GetService("TeleportService")
 	local player = Players.LocalPlayer
@@ -117,29 +117,18 @@ local script = G2L["c"];
 	local Frame = ScreenGui.Frame
 	local List = Frame.PlayerList
 	local ButtonTemp = List.ButtonTemplate
-	
+
 	ButtonTemp.Visible = false
-	
+
 	local function rejoinTeleportToPlayer(player2)
-local Players = game:GetService("Players")
-local TeleportService = game:GetService("TeleportService")
-local player = Players.LocalPlayer
-local ScreenGui = script.Parent
-local Frame = ScreenGui.Frame
-local List = Frame.PlayerList
-local ButtonTemp = List.ButtonTemplate
+		local RootPart = player2.Character.HumanoidRootPart
+		local newline = "; "
+		local comma = ","
 
-ButtonTemp.Visible = false
+		local Cordinates = [[local X,Y,Z = ]]..tostring(RootPart.CFrame.Position.X)..comma..tostring(RootPart.CFrame.Position.Y)..comma..tostring(RootPart.CFrame.Position.Z)
+		local Orientation = [[local RX,RY,RZ = ]]..tostring(RootPart.Orientation.X)..comma..tostring(RootPart.Orientation.Y)..comma..tostring(RootPart.Orientation.Z)
 
-local function rejoinTeleportToPlayer(player2)
-	local RootPart = player2.Character.HumanoidRootPart
-	local newline = "; "
-	local comma = ","
-
-	local Cordinates = [[local X,Y,Z = ]]..tostring(RootPart.CFrame.Position.X)..comma..tostring(RootPart.CFrame.Position.Y)..comma..tostring(RootPart.CFrame.Position.Z)
-	local Orientation = [[local RX,RY,RZ = ]]..tostring(RootPart.Orientation.X)..comma..tostring(RootPart.Orientation.Y)..comma..tostring(RootPart.Orientation.Z)
-	
-	local code = "loadstring(game:HttpGet('https://raw.githubusercontent.com/Smthnrandom1/ScriptRepository/refs/heads/main/RejoinTeleportGui.lua'))()"..newline..Cordinates..newline..Orientation..[[ 
+		local code = "loadstring(game:HttpGet('https://raw.githubusercontent.com/Smthnrandom1/ScriptRepository/refs/heads/main/RejoinTeleportGui.lua'))()"..newline..Cordinates..newline..Orientation..[[ 
     local player = game:GetService("Players").LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     character:WaitForChild("HumanoidRootPart")
@@ -155,56 +144,50 @@ local function rejoinTeleportToPlayer(player2)
     --print("Position:", "X:", X, "Y:", Y, "Z:", Z)
 ]]
 
-	queueonteleport(code)
-	
-	setfflag("FFlagEnableQuickGameLaunch", true)
-	setfflag("FIntRobloxGuiBlurIntensity", false)
-	setfflag("FFlagXTargetMatchmakingOptimizations", true)
-	setfflag("FFlagEnableTeleportFastChannel2", true)
-	setfflag("FIntLocalPlayerTeleportDelayMillis", false)
+		queueonteleport(code)
 
-	TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, player)
-end
+		setfflag("FFlagEnableQuickGameLaunch", true)
+		setfflag("FIntRobloxGuiBlurIntensity", false)
+		setfflag("FFlagXTargetMatchmakingOptimizations", true)
+		setfflag("FFlagEnableTeleportFastChannel2", true)
+		setfflag("FIntLocalPlayerTeleportDelayMillis", false)
 
-local function UpdatePlayerList()
-	for i,v in pairs(List:GetChildren()) do
-		if v:IsA("TextButton") and v.Name ~= "ButtonTemplate" then
-			v:Destroy()
+		TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, player)
+	end
+
+	local function UpdatePlayerList()
+		for i,v in pairs(List:GetChildren()) do
+			if v:IsA("TextButton") and v.Name ~= "ButtonTemplate" then
+				v:Destroy()
+			end
 		end
+
+		local Players2 = Players:GetPlayers()
+		local PlayerList = {}
+
+		for i,v in pairs(Players2) do
+			if v == player then continue end
+			table.insert(PlayerList, v)
+		end
+
+		for i,v in pairs(PlayerList) do
+			local Button = ButtonTemp:Clone()
+			Button.Name = v.Name.."("..v.DisplayName..")"
+			Button.Text = v.Name.."("..v.DisplayName..")"
+			Button.Visible = true
+			Button.Parent = List
+
+			Button.MouseButton1Click:Connect(function()
+				rejoinTeleportToPlayer(v)
+			end)
+		end 
 	end
 
-	local Players2 = Players:GetPlayers()
-	local PlayerList = {}
-
-	for i,v in pairs(Players2) do
-		if v == player then continue end
-		table.insert(PlayerList, v)
-	end
-
-	for i,v in pairs(PlayerList) do
-		local Button = ButtonTemp:Clone()
-		Button.Name = v.Name.."("..v.DisplayName..")"
-		Button.Text = v.Name.."("..v.DisplayName..")"
-		Button.Visible = true
-		Button.Parent = List
-
-		Button.MouseButton1Click:Connect(function()
-			rejoinTeleportToPlayer(v)
-		end)
-	end 
-end
-
-UpdatePlayerList()
-
-Players.PlayerAdded:Connect(UpdatePlayerList)
-Players.PlayerRemoving:Connect(UpdatePlayerList)
-	end
-	
 	UpdatePlayerList()
-	
+
 	Players.PlayerAdded:Connect(UpdatePlayerList)
 	Players.PlayerRemoving:Connect(UpdatePlayerList)
-end;
+end
 task.spawn(C_c);
 
 return G2L["1"], require;
