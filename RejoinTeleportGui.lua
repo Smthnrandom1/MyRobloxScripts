@@ -123,7 +123,6 @@ local script = G2L["c"];
 	local function rejoinTeleportToPlayer(player2)
 local Players = game:GetService("Players")
 local TeleportService = game:GetService("TeleportService")
-local
 local player = Players.LocalPlayer
 local ScreenGui = script.Parent
 local Frame = ScreenGui.Frame
