@@ -137,7 +137,7 @@ local function C_c()
     local RX, RY, RZ = tonumber(RX), tonumber(RY), tonumber(RZ)
     local position = Vector3.new(X,Y,Z)
     local TargetCframe = CFrame.new(position) * CFrame.fromEulerAnglesXYZ(math.rad(RX), math.rad(RY), math.rad(RZ))
-    TargetCframe = (TargetCframe + TargetCframe.LookVector * -2)
+    TargetCframe = (TargetCframe + TargetCframe.LookVector * -1)
 
     character:PivotTo(TargetCframe)
     --print("Rotation:", "RX:", RX, "RY:", RY, "RZ:", RZ)
