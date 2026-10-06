@@ -9,10 +9,6 @@ teleportTool.Name = "TeleportTool"
 teleportTool.RequiresHandle = false
 
 teleportTool.Activated:Connect(function()
-	if not lp.Character then
-		return 
-	end
-	
 	local mousePosition = lpMouse.Hit.Position
 	lp.Character:MoveTo(mousePosition)
 end)
