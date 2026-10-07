@@ -10,7 +10,11 @@ local animator = humanoid.Animator
 local R15CarryAnimation = Instance.new("Animation")
 R15CarryAnimation.AnimationId = "rbxassetid://135078793551909"
 
+local R6CarryAnimation = Instance.new("Animation")
+R6CarryAnimation.AnimationId = "rbxassetid://180436148"
+
 local R15animationTrack = animator:LoadAnimation(R15CarryAnimation)
+local R6animationTrack = animator:LoadAnimation(R6CarryAnimation)
 
 local sumTool = Instance.new("Tool", backpack)
 sumTool.Name = "Click a part!"
@@ -25,17 +29,21 @@ local function ungrabPart()
 
 	SelectedPart = nil
 	sumTool.Name = "Click a part!"
-	
+
 	if target and not target.CanCollide then
 		target.CanCollide = true
 	end
-	
+
 	if bodyPosition then
 		bodyPosition:Destroy()
 	end
-	
+
 	if R15animationTrack.IsPlaying then
 		R15animationTrack:Stop()
+	end
+
+	if R6animationTrack.IsPlaying then
+		R6animationTrack:Stop()
 	end
 end
 
@@ -51,9 +59,12 @@ local function grabPart()
 		end
 
 		bodyPosition = Instance.new("BodyPosition", target)
-		
+
 		if humanoid.RigType == Enum.HumanoidRigType.R15 then
 			R15animationTrack:Play()
+		elseif humanoid.RigType == Enum.HumanoidRigType.R6 then
+			R6animationTrack:Play()
+			R6animationTrack:AdjustSpeed(0)
 		end
 
 		BallGrabCon = RunService.RenderStepped:Connect(function()
@@ -61,6 +72,14 @@ local function grabPart()
 				ungrabPart()
 				return
 			end]]
+
+			if humanoid.RigType == Enum.HumanoidRigType.R6 then
+				for _, track in ipairs(animator:GetPlayingAnimationTracks()) do
+					if track ~= R6animationTrack then
+						track:Stop()
+					end
+				end
+			end
 
 			if character:FindFirstChild("HumanoidRootPart") then
 				target.AssemblyLinearVelocity = Vector3.zero
