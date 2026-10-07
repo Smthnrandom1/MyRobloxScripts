@@ -12,8 +12,7 @@ local code = Cordinates..newline..Orientation..[[
     local character = player.Character or player.CharacterAdded:Wait()
     character:WaitForChild("HumanoidRootPart")
 
-    local X, Y, Z = tonumber(X), tonumber(Y), tonumber(Z)
-    local RX, RY, RZ = tonumber(RX), tonumber(RY), tonumber(RZ)
+
     local position = Vector3.new(X,Y,Z)
     local TargetCframe = CFrame.new(position) * CFrame.fromEulerAnglesXYZ(math.rad(RX), math.rad(RY), math.rad(RZ))
 
