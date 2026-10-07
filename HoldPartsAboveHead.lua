@@ -48,9 +48,10 @@ local function ungrabPart()
 end
 
 local function grabPart()
+	if SelectedPart then return end
 	target = lpMouse.Target
 
-	if target and target:IsA("BasePart") and not target.Anchored and not SelectedPart then
+	if target and target:IsA("BasePart") and not target.Anchored then
 		SelectedPart = target
 		sumTool.Name = `{target.Name}!`
 
