@@ -6,7 +6,7 @@ local lpMouse = lp:GetMouse()
 local backpack = lp.Backpack
 local character = lp.Character
 local humanoid = character.Humanoid
-local RootPart = humanoid.RootPart
+local RootPart = character.HumanoidRootPart
 local animator = humanoid.Animator
 
 local R15CarryAnimation = Instance.new("Animation")
