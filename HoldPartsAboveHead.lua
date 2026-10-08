@@ -1,10 +1,12 @@
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
 local lp = Players.LocalPlayer
 local lpMouse = lp:GetMouse()
 local backpack = lp.Backpack
 local character = lp.Character
 local humanoid = character.Humanoid
+local RootPart = humanoid.RootPart
 local animator = humanoid.Animator
 
 local R15CarryAnimation = Instance.new("Animation")
@@ -27,15 +29,20 @@ local function ungrabPart()
 		BallGrabCon = nil
 	end
 
-	SelectedPart = nil
+	if ThrowPartInputCon then
+		ThrowPartInputCon:Disconnect()
+		ThrowPartInputCon = nil
+	end
+
 	sumTool.Name = "Click a part!"
 
-	if target and not target.CanCollide then
-		target.CanCollide = true
+	if SelectedPart and not SelectedPart.CanCollide then
+		SelectedPart.CanCollide = true
 	end
 
 	if bodyPosition then
 		bodyPosition:Destroy()
+		bodyPosition = nil
 	end
 
 	if R15animationTrack.IsPlaying then
@@ -45,6 +52,21 @@ local function ungrabPart()
 	if R6animationTrack.IsPlaying then
 		R6animationTrack:Stop()
 	end
+
+	SelectedPart = nil
+end
+
+local function ThrowPart(input)
+	if input.KeyCode ~= Enum.KeyCode.Q  then return end
+
+	if SelectedPart then
+		local part = SelectedPart
+
+		ungrabPart()
+		humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+		part.AssemblyLinearVelocity = RootPart.CFrame.LookVector * 100
+		part.AssemblyAngularVelocity = Vector3.new(0, 100, 0)
+	end
 end
 
 local function grabPart()
@@ -53,13 +75,13 @@ local function grabPart()
 
 	if target and target:IsA("BasePart") and not target.Anchored then
 		SelectedPart = target
-		sumTool.Name = `{target.Name}!`
+		sumTool.Name = `{SelectedPart.Name}!`
 
-		if target.CanCollide then
-			target.CanCollide = false
+		if SelectedPart.CanCollide then
+			SelectedPart.CanCollide = false
 		end
 
-		bodyPosition = Instance.new("BodyPosition", target)
+		bodyPosition = Instance.new("BodyPosition", SelectedPart)
 
 		if humanoid.RigType == Enum.HumanoidRigType.R15 then
 			R15animationTrack:Play()
@@ -69,11 +91,6 @@ local function grabPart()
 		end
 
 		BallGrabCon = RunService.RenderStepped:Connect(function()
-			--[[if not isnetworkowner(target) then
-				ungrabPart()
-				return
-			end]]
-
 			if humanoid.RigType == Enum.HumanoidRigType.R6 then
 				for _, track in ipairs(animator:GetPlayingAnimationTracks()) do
 					if track ~= R6animationTrack then
@@ -83,19 +100,24 @@ local function grabPart()
 			end
 
 			if character:FindFirstChild("HumanoidRootPart") then
-				target.AssemblyLinearVelocity = Vector3.zero
-				target.AssemblyAngularVelocity = Vector3.zero
-				target.CFrame = character.HumanoidRootPart.CFrame + Vector3.new(0, 5, 0)
-				bodyPosition.Position = target.Position
+				SelectedPart.Velocity = Vector3.zero
+				SelectedPart.CFrame = character.HumanoidRootPart.CFrame + Vector3.new(0, 5, 0)
+				bodyPosition.Position = SelectedPart.Position
 			end
 		end)
+
+		ThrowPartInputCon = UserInputService.InputEnded:Connect(ThrowPart)
 	end
 end
 
+
+
 sumTool.Activated:Connect(grabPart)
+
 sumTool.Equipped:Connect(function()
 	settings().Physics.AreOwnersShown = true
 end)
+
 sumTool.Unequipped:Connect(function()
 	ungrabPart()
 	settings().Physics.AreOwnersShown = false
