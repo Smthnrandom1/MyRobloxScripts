@@ -57,7 +57,7 @@ local function ungrabPart()
 end
 
 local function ThrowPart(input)
-	if input.KeyCode ~= Enum.KeyCode.Q  then return end
+	if input.KeyCode ~= Enum.KeyCode.Q or UserInputService:GetFocusedTextBox() then return end
 
 	if SelectedPart then
 		local part = SelectedPart
