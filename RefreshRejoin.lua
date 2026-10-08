@@ -8,8 +8,11 @@ local Cordinates = [[local X,Y,Z = ]]..tostring(RootPart.CFrame.Position.X)..com
 local Orientation = [[local RX,RY,RZ = ]]..tostring(RootPart.Orientation.X)..comma..tostring(RootPart.Orientation.Y)..comma..tostring(RootPart.Orientation.Z)
 
 local code = Cordinates..newline..Orientation..[[ 
+repeat task.wait() until game:GetService("Players").LocalPlayer
     local player = game:GetService("Players").LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
+	repeat task.wait() until player.Character
+    local character = player.Character
+	repeat task.wait() until player.Character:FindFirstChild("HumanoidRootPart")
     character:WaitForChild("HumanoidRootPart")
 
     local position = Vector3.new(X,Y,Z)
