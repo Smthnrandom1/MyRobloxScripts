@@ -8,6 +8,7 @@ local character = lp.Character
 local humanoid = character.Humanoid
 local RootPart = character.HumanoidRootPart
 local animator = humanoid.Animator
+local toolname = "Click a part to carry it!"
 
 local R15CarryAnimation = Instance.new("Animation")
 R15CarryAnimation.AnimationId = "rbxassetid://135078793551909"
@@ -19,7 +20,7 @@ local R15animationTrack = animator:LoadAnimation(R15CarryAnimation)
 local R6animationTrack = animator:LoadAnimation(R6CarryAnimation)
 
 local sumTool = Instance.new("Tool", backpack)
-sumTool.Name = "Click a part!"
+sumTool.Name = toolname
 sumTool.RequiresHandle = false
 sumTool.CanBeDropped = false
 
@@ -34,7 +35,7 @@ local function ungrabPart()
 		ThrowPartInputCon = nil
 	end
 
-	sumTool.Name = "Click a part!"
+	sumTool.Name = toolname
 
 	if SelectedPart and not SelectedPart.CanCollide then
 		SelectedPart.CanCollide = true
