@@ -110,34 +110,40 @@ end
 
 -- TOUCH TAGGING (patched: connection cleanup)
 local function connectTouchEvents(tagger, activePlayers, taggedCallback)
-	if not tagger.Character then return end
+    if not tagger.Character then return end
 
-	if tagger._touchConnections then
-		for _, c in ipairs(tagger._touchConnections) do
-			c:Disconnect()
-		end
-	end
-	tagger._touchConnections = {}
+    local char = tagger.Character
 
-	for _, part in ipairs(tagger.Character:GetDescendants()) do
-		if part:IsA("BasePart") then
-			local conn = part.Touched:Connect(function(hit)
-				local otherChar = hit:FindFirstAncestorOfClass("Model")
-				if not otherChar then return end
+    -- Clear old connections
+    if char._touchConnections then
+        for _, c in ipairs(char._touchConnections) do
+            c:Disconnect()
+        end
+    end
+    char._touchConnections = {}
 
-				local otherPlayer = Players:GetPlayerFromCharacter(otherChar)
-				if not otherPlayer then return end
+    -- Create new connections
+    for _, part in ipairs(char:GetDescendants()) do
+        if part:IsA("BasePart") then
+            local conn = part.Touched:Connect(function(hit)
+                local otherChar = hit:FindFirstAncestorOfClass("Model")
+                if not otherChar then return end
 
-				for _, plr in ipairs(activePlayers) do
-					if plr == otherPlayer and plr ~= tagger then
-						taggedCallback(otherPlayer)
-					end
-				end
-			end)
-			table.insert(tagger._touchConnections, conn)
-		end
-	end
+                local otherPlayer = Players:GetPlayerFromCharacter(otherChar)
+                if not otherPlayer then return end
+
+                for _, plr in ipairs(activePlayers) do
+                    if plr == otherPlayer and plr ~= tagger then
+                        taggedCallback(otherPlayer)
+                    end
+                end
+            end)
+
+            table.insert(char._touchConnections, conn)
+        end
+    end
 end
+
 
 while true do
 	if not roundsEnabled then
