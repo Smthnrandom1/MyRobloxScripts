@@ -369,7 +369,7 @@ while true do
 	-- Reset round
 	----------------------------------------------------
 	announce("Resetting players...")
-	env.HdAdminCmd(";reset all")
+	env.HdAdminCmd(";respawn all")
 	env.HdAdminCmd(";size all 1")
 	env.HdAdminCmd(";unhighlight all")
 
