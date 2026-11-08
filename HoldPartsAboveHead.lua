@@ -76,7 +76,7 @@ local function grabPart()
 
 	if target and target:IsA("BasePart") and not target.Anchored then
 		SelectedPart = target
-		sumTool.Name = `{SelectedPart.Name}!`
+		sumTool.Name = `Carrying: {SelectedPart.Name}!`
 
 		if SelectedPart.CanCollide then
 			SelectedPart.CanCollide = false
