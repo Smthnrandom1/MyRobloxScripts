@@ -25,90 +25,90 @@ sumTool.RequiresHandle = false
 sumTool.CanBeDropped = false
 
 local function ungrabPart()
-	if BallGrabCon then
-		BallGrabCon:Disconnect()
-		BallGrabCon = nil
-	end
-
-	if ThrowPartInputCon then
-		ThrowPartInputCon:Disconnect()
-		ThrowPartInputCon = nil
-	end
-
-	sumTool.Name = toolname
-
-	if SelectedPart and not SelectedPart.CanCollide then
-		SelectedPart.CanCollide = true
-	end
-
-	if bodyPosition then
-		bodyPosition:Destroy()
-		bodyPosition = nil
-	end
-
-	if R15animationTrack.IsPlaying then
-		R15animationTrack:Stop()
-	end
-
-	if R6animationTrack.IsPlaying then
-		R6animationTrack:Stop()
-	end
-
-	SelectedPart = nil
+    	if BallGrabCon then
+        		BallGrabCon:Disconnect()
+        		BallGrabCon = nil
+    	end
+    
+    	if ThrowPartInputCon then
+        		ThrowPartInputCon:Disconnect()
+        		ThrowPartInputCon = nil
+    	end
+    
+    	sumTool.Name = toolname
+    
+    	if SelectedPart and not SelectedPart.CanCollide then
+        		SelectedPart.CanCollide = true
+    	end
+    
+    	if bodyPosition then
+        		bodyPosition:Destroy()
+        		bodyPosition = nil
+    	end
+    
+    	if R15animationTrack.IsPlaying then
+        		R15animationTrack:Stop()
+    	end
+    
+    	if R6animationTrack.IsPlaying then
+        		R6animationTrack:Stop()
+    	end
+    
+    	SelectedPart = nil
 end
 
 local function ThrowPart(input)
-	if input.KeyCode ~= Enum.KeyCode.Q or UserInputService:GetFocusedTextBox() then return end
-
-	if SelectedPart then
-		local part = SelectedPart
-
-		ungrabPart()
-		humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-		part.AssemblyLinearVelocity = RootPart.CFrame.LookVector * 100
-		part.AssemblyAngularVelocity = Vector3.new(0, 100, 0)
-	end
+    	if input.KeyCode ~= Enum.KeyCode.Q or UserInputService:GetFocusedTextBox() then return end
+    
+    	if SelectedPart then
+        		local part = SelectedPart
+        
+        		ungrabPart()
+        		humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+        		part.AssemblyLinearVelocity = RootPart.CFrame.LookVector * 100
+        		part.AssemblyAngularVelocity = Vector3.new(0, 100, 0)
+    	end
 end
 
 local function grabPart()
-	if SelectedPart then return end
-	target = lpMouse.Target
-
-	if target and target:IsA("BasePart") and not target.Anchored then
-		SelectedPart = target
-		sumTool.Name = `Carrying: {SelectedPart.Name}!`
-
-		if SelectedPart.CanCollide then
-			SelectedPart.CanCollide = false
-		end
-
-		bodyPosition = Instance.new("BodyPosition", SelectedPart)
-
-		if humanoid.RigType == Enum.HumanoidRigType.R15 then
-			R15animationTrack:Play()
-		elseif humanoid.RigType == Enum.HumanoidRigType.R6 then
-			R6animationTrack:Play()
-			R6animationTrack:AdjustSpeed(0)
-		end
-
-		BallGrabCon = RunService.RenderStepped:Connect(function()
-			if humanoid.RigType == Enum.HumanoidRigType.R6 then
-				for _, track in ipairs(animator:GetPlayingAnimationTracks()) do
-					if track ~= R6animationTrack then
-						track:Stop()
-					end
-				end
-			end
-
-			if character:FindFirstChild("HumanoidRootPart") then
-				SelectedPart.Velocity = Vector3.zero
-				SelectedPart.CFrame = character.HumanoidRootPart.CFrame + Vector3.new(0, 5, 0)
-				bodyPosition.Position = SelectedPart.Position
-			end
-		end)
-
-		ThrowPartInputCon = UserInputService.InputEnded:Connect(ThrowPart)
-	end
+    	if SelectedPart then return end
+    	target = lpMouse.Target
+    
+    	if target and target:IsA("BasePart") and not target.Anchored then
+        		SelectedPart = target
+        		sumTool.Name = `Carrying: {SelectedPart.Name}!`
+        
+        		if SelectedPart.CanCollide then
+            			SelectedPart.CanCollide = false
+        		end
+        
+        		bodyPosition = Instance.new("BodyPosition", SelectedPart)
+        
+        		if humanoid.RigType == Enum.HumanoidRigType.R15 then
+            			R15animationTrack:Play()
+        		elseif humanoid.RigType == Enum.HumanoidRigType.R6 then
+            			R6animationTrack:Play()
+            			R6animationTrack:AdjustSpeed(0)
+        		end
+        
+        		BallGrabCon = RunService.RenderStepped:Connect(function()
+            			if humanoid.RigType == Enum.HumanoidRigType.R6 then
+                				for _, track in ipairs(animator:GetPlayingAnimationTracks()) do
+                    					if track ~= R6animationTrack then
+                        						track:Stop()
+                    					end
+                				end
+            			end
+            
+            			if character:FindFirstChild("HumanoidRootPart") then
+                				SelectedPart.Velocity = Vector3.zero
+                				SelectedPart.CFrame = (character.HumanoidRootPart.CFrame + character.HumanoidRootPart.CFrame.UpVector * 5)
+                				bodyPosition.Position = SelectedPart.Position
+            			end
+        		end)
+        
+        		ThrowPartInputCon = UserInputService.InputEnded:Connect(ThrowPart)
+    	end
 end
 
 
@@ -116,10 +116,10 @@ end
 sumTool.Activated:Connect(grabPart)
 
 sumTool.Equipped:Connect(function()
-	settings().Physics.AreOwnersShown = true
+    	settings().Physics.AreOwnersShown = true
 end)
 
 sumTool.Unequipped:Connect(function()
-	ungrabPart()
-	settings().Physics.AreOwnersShown = false
+    	ungrabPart()
+    	settings().Physics.AreOwnersShown = false
 end)
