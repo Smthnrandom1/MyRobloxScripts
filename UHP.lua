@@ -1,5 +1,6 @@
 local CoreGui = game:GetService("CoreGui")
 local Players = game:GetService("Players")
+repeat wait() until Players.LocalPlayer
 local player = Players.LocalPlayer
 local LobbyPos = Vector3.new(-280, 179, 341)
 local MapPos = Vector3.new(-121, 47, 71)
