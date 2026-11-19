@@ -1,7 +1,6 @@
 local CoreGui = game:GetService("CoreGui")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
-local PlayerGui = player.PlayerGui
 local LobbyPos = Vector3.new(-280, 179, 341)
 local MapPos = Vector3.new(-121, 47, 71)
 
@@ -233,4 +232,4 @@ GrabPart.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Smthnrandom1/MyRobloxScripts/refs/heads/main/HoldPartsAboveHead.lua"))()
 end)
 
-queueonteleport(loadstring(game:HttpGet("https://raw.githubusercontent.com/Smthnrandom1/MyRobloxScripts/refs/heads/main/UHP")))
+queueonteleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Smthnrandom1/MyRobloxScripts/refs/heads/main/UHP"))()]])
