@@ -26,5 +26,3 @@ repeat task.wait() until game:GetService("Players").LocalPlayer
 queueonteleport(code)
 
 TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, player)
-
-print("done")
