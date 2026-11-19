@@ -1,0 +1,234 @@
+local CoreGui = game:GetService("CoreGui")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local PlayerGui = player.PlayerGui
+local LobbyPos = Vector3.new(-280, 179, 341)
+local MapPos = Vector3.new(-121, 47, 71)
+
+-- delete the gui that already exists
+if CoreGui:FindFirstChild("UHS") then
+    CoreGui:FindFirstChild("UHS"):Destroy()
+end
+
+-- StarterGui.ScreenGui
+local ScreenGui = Instance.new("ScreenGui", CoreGui)
+ScreenGui.Name = "UHS"
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+
+-- StarterGui.ScreenGui.MainFrame
+local MainFrame = Instance.new("Frame", ScreenGui)
+MainFrame.BorderSizePixel = 0
+MainFrame.BackgroundColor3 = Color3.fromRGB(59, 59, 59)
+MainFrame.Size = UDim2.new(0, 377, 0, 295)
+MainFrame.Position = UDim2.new(0.36042, 0, 0.19974, 0)
+MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.Name = "MainFrame"
+
+-- StarterGui.ScreenGui.MainFrame.UIDragDetector
+local UIDragger = Instance.new("UIDragDetector", MainFrame)
+
+
+-- StarterGui.ScreenGui.MainFrame.Title
+local Title = Instance.new("TextLabel", MainFrame)
+Title.TextWrapped = true
+Title.BorderSizePixel = 0
+Title.TextSize = 14
+Title.TextScaled = true
+Title.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Title.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.Size = UDim2.new(0, 377, 0, 50)
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.Text = "Unatural Hacker Panel"
+Title.Name = "Title"
+
+
+-- StarterGui.ScreenGui.MainFrame.ScrollingFrame
+local ScrollingFrame = Instance.new("ScrollingFrame", MainFrame)
+ScrollingFrame.Active = true
+ScrollingFrame.BorderSizePixel = 0
+ScrollingFrame.CanvasPosition = Vector2.new(0, 200)
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(59, 59, 59)
+ScrollingFrame.Size = UDim2.new(0, 377, 0, 238)
+ScrollingFrame.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+ScrollingFrame.Position = UDim2.new(0, 0, 0.19322, 0)
+ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ScrollingFrame.BackgroundTransparency = 1
+
+
+-- StarterGui.ScreenGui.MainFrame.ScrollingFrame.TELEPORTS
+local TELEPORTS = Instance.new("Folder", ScrollingFrame)
+TELEPORTS.Name = "TELEPORTS"
+
+
+-- StarterGui.ScreenGui.MainFrame.ScrollingFrame.TELEPORTS.TELEPORTS
+local TELEPORTSTITLE = Instance.new("TextLabel", TELEPORTS)
+TELEPORTSTITLE.TextWrapped = true
+TELEPORTSTITLE.BorderSizePixel = 0
+TELEPORTSTITLE.TextSize = 14
+TELEPORTSTITLE.TextScaled = true
+TELEPORTSTITLE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TELEPORTSTITLE.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+TELEPORTSTITLE.TextColor3 = Color3.fromRGB(255, 255, 255)
+TELEPORTSTITLE.BackgroundTransparency = 1
+TELEPORTSTITLE.Size = UDim2.new(0, 377, 0, 50)
+TELEPORTSTITLE.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TELEPORTSTITLE.Text = "TELEPORTS"
+TELEPORTSTITLE.Name = "TELEPORTS"
+
+
+-- StarterGui.ScreenGui.MainFrame.ScrollingFrame.TELEPORTS.Lobby
+local Lobby = Instance.new("TextButton", TELEPORTS)
+Lobby.TextWrapped = true
+Lobby.BorderSizePixel = 0
+Lobby.TextSize = 14
+Lobby.TextScaled = true
+Lobby.TextColor3 = Color3.fromRGB(255, 255, 255)
+Lobby.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Lobby.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+Lobby.Size = UDim2.new(0, 377, 0, 50)
+Lobby.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Lobby.Text = "Lobby"
+Lobby.Name = "Lobby"
+Lobby.Position = UDim2.new(0, 0, 0.08475, 0)
+
+-- StarterGui.ScreenGui.MainFrame.ScrollingFrame.TELEPORTS.Map
+local Map = Instance.new("TextButton", TELEPORTS)
+Map.TextWrapped = true
+Map.BorderSizePixel = 0
+Map.TextSize = 14
+Map.TextScaled = true
+Map.TextColor3 = Color3.fromRGB(255, 255, 255)
+Map.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Map.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+Map.Size = UDim2.new(0, 377, 0, 50)
+Map.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Map.Text = "Map"
+Map.Name = "Map"
+Map.Position = UDim2.new(0, 0, 0.16949, 0)
+
+-- StarterGui.ScreenGui.MainFrame.ScrollingFrame.SCRIPTS
+local SCRIPTS = Instance.new("Folder", ScrollingFrame)
+SCRIPTS.Name = "SCRIPTS"
+
+
+-- StarterGui.ScreenGui.MainFrame.ScrollingFrame.SCRIPTS.SCRIPTS
+local SCRIPTSTITLE = Instance.new("TextLabel", SCRIPTS)
+SCRIPTSTITLE.TextWrapped = true
+SCRIPTSTITLE.BorderSizePixel = 0
+SCRIPTSTITLE.TextSize = 14
+SCRIPTSTITLE.TextScaled = true
+SCRIPTSTITLE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SCRIPTSTITLE.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+SCRIPTSTITLE.TextColor3 = Color3.fromRGB(255, 255, 255)
+SCRIPTSTITLE.BackgroundTransparency = 1
+SCRIPTSTITLE.Size = UDim2.new(0, 377, 0, 50)
+SCRIPTSTITLE.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SCRIPTSTITLE.Text = "SCRIPTS"
+SCRIPTSTITLE.Name = "SCRIPTS"
+SCRIPTSTITLE.Position = UDim2.new(0, 0, 0.25424, 0)
+
+
+-- StarterGui.ScreenGui.MainFrame.ScrollingFrame.SCRIPTS.IY
+local IY = Instance.new("TextButton", SCRIPTS)
+IY.TextWrapped = true
+IY.BorderSizePixel = 0
+IY.TextSize = 14
+IY.TextScaled = true
+IY.TextColor3 = Color3.fromRGB(255, 255, 255)
+IY.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+IY.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+IY.Size = UDim2.new(0, 377, 0, 50)
+IY.BorderColor3 = Color3.fromRGB(0, 0, 0)
+IY.Text = "Infinite Yeild"
+IY.Name = "IY"
+IY.Position = UDim2.new(0, 0, 0.33898, 0)
+
+-- StarterGui.ScreenGui.MainFrame.ScrollingFrame.SCRIPTS.RefreshRejoin
+local RefreshRejoin = Instance.new("TextButton", SCRIPTS)
+RefreshRejoin.TextWrapped = true
+RefreshRejoin.BorderSizePixel = 0
+RefreshRejoin.TextSize = 14
+RefreshRejoin.TextScaled = true
+RefreshRejoin.TextColor3 = Color3.fromRGB(255, 255, 255)
+RefreshRejoin.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+RefreshRejoin.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+RefreshRejoin.Size = UDim2.new(0, 377, 0, 50)
+RefreshRejoin.BorderColor3 = Color3.fromRGB(0, 0, 0)
+RefreshRejoin.Text = "RefreshRejoin"
+RefreshRejoin.Name = "RefreshRejoin"
+RefreshRejoin.Position = UDim2.new(0, 0, 0.42373, 0)
+
+-- StarterGui.ScreenGui.MainFrame.ScrollingFrame.NDSCRIPTS
+local NDSCRIPTS = Instance.new("Folder", ScrollingFrame)
+NDSCRIPTS. Name = "NDSCRIPTS"
+
+
+-- StarterGui.ScreenGui.MainFrame.ScrollingFrame.NDSCRIPTS.NDSCRIPTS
+local NDSCRIPTSTITLE = Instance.new("TextLabel", NDSCRIPTS)
+NDSCRIPTSTITLE.TextWrapped = true
+NDSCRIPTSTITLE.BorderSizePixel = 0
+NDSCRIPTSTITLE.TextSize = 14
+NDSCRIPTSTITLE.TextScaled = true
+NDSCRIPTSTITLE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NDSCRIPTSTITLE.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+NDSCRIPTSTITLE.TextColor3 = Color3.fromRGB(255, 255, 255)
+NDSCRIPTSTITLE.BackgroundTransparency = 1
+NDSCRIPTSTITLE.Size = UDim2.new(0, 377, 0, 50)
+NDSCRIPTSTITLE.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NDSCRIPTSTITLE.Text = "NDS SCRIPTS"
+NDSCRIPTSTITLE.Name = "NDSCRIPTS"
+NDSCRIPTSTITLE.Position = UDim2.new(0, 0, 0.50847, 0)
+
+
+-- StarterGui.ScreenGui.MainFrame.ScrollingFrame.NDSCRIPTS.GrabPart
+local GrabPart = Instance.new("TextButton", NDSCRIPTS)
+GrabPart.TextWrapped = true
+GrabPart.BorderSizePixel = 0
+GrabPart.TextSize = 14
+GrabPart.TextScaled = true
+GrabPart.TextColor3 = Color3.fromRGB(255, 255, 255)
+GrabPart.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+GrabPart.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+GrabPart.Size = UDim2.new(0, 377, 0, 50)
+GrabPart.BorderColor3 = Color3.fromRGB(0, 0, 0)
+GrabPart.Text = "Carry Parts"
+GrabPart.Name = "GrabPart"
+GrabPart.Position = UDim2.new(0, 0, 0.59322, 0)
+
+-- code to make gui work
+local function CreateUIStroke(parent, color, StrokeMode)
+    local UIStroke = Instance.new("UIStroke", parent)
+    UIStroke.Color = color
+    UIStroke.ApplyStrokeMode = StrokeMode
+end
+
+CreateUIStroke(IY, Color3.fromRGB(255, 255, 255), Enum.ApplyStrokeMode.Border)
+CreateUIStroke(Lobby, Color3.fromRGB(255, 255, 255), Enum.ApplyStrokeMode.Border)
+CreateUIStroke(Map, Color3.fromRGB(255, 255, 255), Enum.ApplyStrokeMode.Border)
+CreateUIStroke(GrabPart, Color3.fromRGB(255, 255, 255), Enum.ApplyStrokeMode.Border)
+CreateUIStroke(IY, Color3.fromRGB(255, 255, 255), Enum.ApplyStrokeMode.Border)
+CreateUIStroke(RefreshRejoin, Color3.fromRGB(255, 255, 255), Enum.ApplyStrokeMode.Border)
+
+Lobby.MouseButton1Click:Connect(function()
+    local character = player.Character
+    character:MoveTo(LobbyPos)
+end)
+
+Map.MouseButton1Click:Connect(function()
+    local character = player.Character
+    character:MoveTo(MapPos)
+end)
+
+IY.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+end)
+
+RefreshRejoin.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Smthnrandom1/MyRobloxScripts/refs/heads/main/RefreshRejoin.lua"))()
+end)
+
+GrabPart.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Smthnrandom1/MyRobloxScripts/refs/heads/main/HoldPartsAboveHead.lua"))()
+end)
