@@ -233,4 +233,4 @@ GrabPart.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Smthnrandom1/MyRobloxScripts/refs/heads/main/HoldPartsAboveHead.lua"))()
 end)
 
-queueonteleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Smthnrandom1/MyRobloxScripts/refs/heads/main/UHP"))()]])
+queueonteleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Smthnrandom1/MyRobloxScripts/refs/heads/main/UHP.lua"))()]])
