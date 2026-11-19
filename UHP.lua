@@ -21,7 +21,7 @@ local MainFrame = Instance.new("Frame", ScreenGui)
 MainFrame.BorderSizePixel = 0
 MainFrame.BackgroundColor3 = Color3.fromRGB(59, 59, 59)
 MainFrame.Size = UDim2.new(0, 377, 0, 295)
-MainFrame.Position = UDim2.new(0.36042, 0, 0.19974, 0)
+MainFrame.Position = UDim2.new(0.360419989, 404, 0.199739993, 226)
 MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 MainFrame.Name = "MainFrame"
 
