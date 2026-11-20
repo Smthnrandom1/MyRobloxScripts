@@ -160,6 +160,21 @@ RefreshRejoin.Text = "RefreshRejoin"
 RefreshRejoin.Name = "RefreshRejoin"
 RefreshRejoin.Position = UDim2.new(0, 0, 0.42373, 0)
 
+-- StarterGui.ScreenGui.MainFrame.ScrollingFrame.SCRIPTS.TTool
+local TTool = Instance.new("TextButton", SCRIPTS)
+TTool.TextWrapped = true
+TTool.BorderSizePixel = 0
+TTool.TextSize = 14
+TTool.TextScaled = true
+TTool.TextColor3 = Color3.fromRGB(255, 255, 255)
+TTool.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TTool.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+TTool.Size = UDim2.new(0, 377, 0, 50)
+TTool.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TTool.Text = "TpTool"
+TTool.Name = "TTool"
+TTool.Position = UDim2.new(0, 0, 0.508, 0)
+
 -- StarterGui.ScreenGui.MainFrame.ScrollingFrame.NDSCRIPTS
 local NDSCRIPTS = Instance.new("Folder", ScrollingFrame)
 NDSCRIPTS. Name = "NDSCRIPTS"
@@ -179,7 +194,7 @@ NDSCRIPTSTITLE.Size = UDim2.new(0, 377, 0, 50)
 NDSCRIPTSTITLE.BorderColor3 = Color3.fromRGB(0, 0, 0)
 NDSCRIPTSTITLE.Text = "NDS SCRIPTS"
 NDSCRIPTSTITLE.Name = "NDSCRIPTS"
-NDSCRIPTSTITLE.Position = UDim2.new(0, 0, 0.50847, 0)
+NDSCRIPTSTITLE.Position = UDim2.new(0, 0, 0.593, 0)
 
 
 -- StarterGui.ScreenGui.MainFrame.ScrollingFrame.NDSCRIPTS.GrabPart
@@ -195,7 +210,22 @@ GrabPart.Size = UDim2.new(0, 377, 0, 50)
 GrabPart.BorderColor3 = Color3.fromRGB(0, 0, 0)
 GrabPart.Text = "Carry Parts"
 GrabPart.Name = "GrabPart"
-GrabPart.Position = UDim2.new(0, 0, 0.59322, 0)
+GrabPart.Position = UDim2.new(0, 0, 0.678, 0)
+
+-- StarterGui.ScreenGui.MainFrame.ScrollingFrame.NDSCRIPTS.WatchAdForHammer
+local WatchAdForHammer = Instance.new("TextButton", NDSCRIPTS)
+WatchAdForHammer.TextWrapped = true
+WatchAdForHammer.BorderSizePixel = 0
+WatchAdForHammer.TextSize = 14
+WatchAdForHammer.TextScaled = true
+WatchAdForHammer.TextColor3 = Color3.fromRGB(255, 255, 255)
+WatchAdForHammer.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+WatchAdForHammer.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+WatchAdForHammer.Size = UDim2.new(0, 377, 0, 50)
+WatchAdForHammer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+WatchAdForHammer.Text = "Watch Ad"
+WatchAdForHammer.Name = "WatchAdForHammer"
+WatchAdForHammer.Position = UDim2.new(0, 0, 0.763, 0)
 
 -- code to make gui work
 local function CreateUIStroke(parent, color, StrokeMode)
@@ -210,6 +240,8 @@ CreateUIStroke(Map, Color3.fromRGB(255, 255, 255), Enum.ApplyStrokeMode.Border)
 CreateUIStroke(GrabPart, Color3.fromRGB(255, 255, 255), Enum.ApplyStrokeMode.Border)
 CreateUIStroke(IY, Color3.fromRGB(255, 255, 255), Enum.ApplyStrokeMode.Border)
 CreateUIStroke(RefreshRejoin, Color3.fromRGB(255, 255, 255), Enum.ApplyStrokeMode.Border)
+CreateUIStroke(WatchAdForHammer, Color3.fromRGB(255, 255, 255), Enum.ApplyStrokeMode.Border)
+CreateUIStroke(TTool, Color3.fromRGB(255, 255, 255), Enum.ApplyStrokeMode.Border)
 
 Lobby.MouseButton1Click:Connect(function()
     local character = player.Character
@@ -231,6 +263,15 @@ end)
 
 GrabPart.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Smthnrandom1/MyRobloxScripts/refs/heads/main/HoldPartsAboveHead.lua"))()
+end)
+
+WatchAdForHammer.MouseButton1Click:Connect(function()
+    local AdRewardEvent = workspace.BillboardAd.RewardEvent
+    AdRewardEvent:FireServer("PlayRewardAd")
+end)
+
+TTool.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Smthnrandom1/MyRobloxScripts/refs/heads/main/TeleportTool.lua"))()
 end)
 
 queueonteleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Smthnrandom1/MyRobloxScripts/refs/heads/main/UHP.lua"))()]])
