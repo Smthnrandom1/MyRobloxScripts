@@ -64,7 +64,7 @@ local function ThrowPart(input)
         		local part = SelectedPart
         
         		ungrabPart()
-        		humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+        		--humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
         		part.AssemblyLinearVelocity = RootPart.CFrame.LookVector * 100
         		part.AssemblyAngularVelocity = Vector3.new(0, 100, 0)
     	end
